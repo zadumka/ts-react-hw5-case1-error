@@ -1,0 +1,1 @@
+# -ts-react-hw5-case1-error
