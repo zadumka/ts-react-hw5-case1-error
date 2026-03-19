@@ -1,18 +1,21 @@
-import ReactPaginate from 'react-paginate';
-import css from './Pagination.module.css';
+import type { ComponentType } from "react";
+import ReactPaginateModule from "react-paginate";
+import type { ReactPaginateProps } from "react-paginate";
+import css from "./Pagination.module.css";
 
-// Помилка: неправильна назва інтерфейсу (повинна бути PaginationProps)
-interface PaginationProperties {
+type ModuleWithDefault<T> = { default: T };
+
+const ReactPaginate = (
+  ReactPaginateModule as unknown as ModuleWithDefault<ComponentType<ReactPaginateProps>>
+).default;
+
+interface PaginationProps {
   totalPages: number;
   currentPage: number;
   onPageChange: (nextPage: number) => void;
 }
 
-export default function Pagination({
-  totalPages,
-  currentPage,
-  onPageChange,
-}: PaginationProperties) {
+export default function Pagination({ totalPages, currentPage, onPageChange }: PaginationProps) {
   return (
     <ReactPaginate
       pageCount={totalPages}
